@@ -26,9 +26,9 @@ For the project to fulfill the testing suite set up by the freeCodeCamp team, th
 
 - [ ] there exist one county for each data point;
 
-- [ ] there exist a legend with `id="legend"`;
+- [x] there exist a legend with `id="legend"`;
 
-- [ ] in the legend, there exist at least 4 fill colors;
+- [x] in the legend, there exist at least 4 fill colors;
 
 - [ ] upon hovering on each area, a tooltip with `id="tooltip"` shows additional information;
 
