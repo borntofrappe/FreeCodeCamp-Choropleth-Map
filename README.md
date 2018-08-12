@@ -14,9 +14,9 @@ For reference, a choropleth map just like [this one](https://codepen.io/freeCode
 
 For the project to fulfill the testing suite set up by the freeCodeCamp team, the visualization needs to fulfill a few user stories:
 
-- [ ] there exist a title, with `id="title"`;
+- [x] there exist a title, with `id="title"`;
 
-- [ ] there exist a description, with `id="description`;
+- [x] there exist a description, with `id="description`;
 
 - [ ] the choropleth should display counties with `class="county` representing the data;
 
