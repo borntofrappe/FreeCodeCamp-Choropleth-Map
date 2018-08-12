@@ -77,3 +77,17 @@ legend
   .attr("y", legendValues.height*2)
   .style("font-size", "0.6rem")
   .text((d) => `${d}%`);
+
+
+// fetch the JSON object responsible for the SVG shapes
+// when retrieving the object, call a function to draw the map, based on the data
+const URL_SVG = "https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json";
+
+fetch(URL_SVG)
+  .then((response) => response.json())
+  .then((json) => drawMap(json));
+
+// include a one element for each county, drawing the shape with a path element
+function drawMap(data) {
+  console.log(data);
+}
