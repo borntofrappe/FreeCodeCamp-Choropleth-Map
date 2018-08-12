@@ -47,3 +47,46 @@ All this making use of the following datasets:
   ```code
   https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json
   ```
+
+## D3.js
+
+Including the title, description, the svg container and the legend is achieved much alike for the previous three projects.
+
+The tooltip as well promises to replicate the previous structure. The different section of the project, and the main feature behind the application, relates to the choropleth map.
+
+This makes use of data from the two provided URL, which warrant a few notes.
+
+**Data**
+
+```code
+https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/for_user_education.json
+```
+
+The first URL references an array of objects, with one object for each county.
+
+The objects detail the following fields:
+
+- `fips`, which is apparently a five digit standard identifying all US counties;
+- `state`, the state of the county;
+- `area_name`, presumably the name of the county itself,
+- `bachelorsOrHigher`, a float describing adults over 25 with a bachelor degree or higher title of education. Presumably this float references to a percentage, given the lack of additional numbers supporting a different reference (such as per 1000 habitants).
+
+This URL has therefore the information which needs to characterize the different areas in the SVG, and mostly information which needs to be shown in the tooltip.
+
+```code
+https://raw.githubusercontent.com/no-stack-dub-sack/testable-projects-fcc/master/src/data/choropleth_map/counties.json
+```
+
+The second URL, on the other hand, provides a giant object, with two fields in `topology` and `objects`.
+
+This last field provides an object with a `county` field, itself nesting an object with a `type` and `geometries`.
+
+This last field (json.objects.counties.geometries) refers to an array of object, which are presumably used to draw the different areas for the counties.
+
+These objects detail the following fields:
+
+- `type`, describing the shape of the state (such as 'Polygon');
+- `id`, an identifier which is notably similar and possibly exactly like the `fips` code;
+- `arcs`, an array of arrays, detailing what could be described as a sequence of integers. Given the `d3.geo` function in D3.js, these are the values used by the library to actually draw the different shapes.
+
+While the first URL contains therefore the data behind the application, the second URL is necessary to actually draw the different counties. 
