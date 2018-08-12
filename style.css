@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Lato");
-:root {
-  --font-text: 'Lato', sans-serif;
-  --color-text: #252525;
-  --color-background: #f0f0f0;
-}
+/* include the chosen font and colors:
+- lato for simple and readable text
+- #252525 for tone-down black
+- #eee for down-played white
+*/
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,7 +12,57 @@
 body {
   min-height: 100vh;
   width: 100%;
-  font-family: var(--font-text);
-  color: var(--color-text);
-  background: var(--color-background);
+  font-family: 'Lato', sans-serif;
+  color: #252525;
+  background: #eee;
+}
+.container {
+/* set the size of the container 
+    as the SVG defines only the viewbox attribute, the width spreads to fit the container's width
+    the height is also defined by the viewbox itself, to preserve the width to height ratio */
+  width: 85vw;
+  padding: 1rem;
+  margin: 2rem auto;
+  background: #eee;
+  box-shadow: 6px 8px 0 #252525, 14px 14px 0 #eee;
+}
+.container h1#title {
+  font-size: 2rem;
+  text-transform: capitalize;
+  text-align: center;
+  margin: 1rem;
+}
+.container h3#description {
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.2rem;
+}
+.container div#tooltip {
+/* 
+    absolute position the div used as tooltip
+    the left and bottom properties are set in the JS script, to move the element right next to the data point it ought to represent 
+    max-width to avoid having the text displayed in a single line
+    */
+  position: absolute;
+  max-width: 250px;
+  border-radius: 4px;
+  color: var(--color-light);
+  background: var(--color-dark);
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+/* pointer-events set to none as to avoid hovering on the tooltip and preventing the hover state on the rectangle elements behind it */
+  pointer-events: none;
+/* set opacity to 0 and change it to 1 on hover */
+  opacity: 0;
+/* transition to smoothen the change in opacity  */
+  transition: opacity 0.2s ease-out;
+}
+@media (max-width: 700px) {
+  .container h1#title {
+    font-size: 1.8rem;
+  }
+  .container h3#description {
+    font-size: 1.2rem;
+  }
 }
