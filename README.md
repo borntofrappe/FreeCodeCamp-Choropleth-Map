@@ -8,6 +8,8 @@ For the fourth and penultimate project necessary to earn the 'Data Visualization
 
 The design of the project replicates the structure included for the previous three efforts: a light card on a dark background, a bold header, short description followed with the very visualization.
 
+For reference, a choropleth map just like [this one](https://codepen.io/freeCodeCamp/full/EZKqza).
+
 ## User Stories
 
 For the project to fulfill the testing suite set up by the freeCodeCamp team, the visualization needs to fulfill a few user stories:
