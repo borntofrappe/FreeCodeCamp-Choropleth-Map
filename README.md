@@ -90,3 +90,36 @@ These objects detail the following fields:
 - `arcs`, an array of arrays, detailing what could be described as a sequence of integers. Given the `d3.geo` function in D3.js, these are the values used by the library to actually draw the different shapes.
 
 While the first URL contains therefore the data behind the application, the second URL is necessary to actually draw the different counties. 
+
+**GeoPath**
+
+D3.js allows to obtain SVG syntax from JSON files which detail longitude and latitude coordinates, using the `d3.geoPath()` function.
+
+The method, as mentioned in the [documentation](https://github.com/d3/d3-geo#d3-geo) makes use of GeoJSON, a JSON format used to encode geographic data structures, and specifically of an object of type `FeatureCollection`. 
+
+The library allows to also take advantage of an extension called [TopoJSON](https://github.com/topojson/topojson). It is, apparently, an extension of the GeoJSON format which details geographical coordinates in alternative formats, generating objects of type `Topology`. The response obtained from the first URL provides exactly such an object and it is therefore necessary to use the extension, to "manipulate" the object into a format understandable by `d3.geoPath()`.
+
+First, it is necessary to include the extension. In the `index.html` file, a script element can be included to reference the library through a CDN. 
+
+```HTML
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+```
+
+Once included, the script file can benefit from its methods, among which `topojson.feature`.
+
+This is a method taking as input an object of type `Topology` and returning a `FeatureCollection`, which is exactly what the project needs. Further research on the [extension](https://github.com/topojson/topojson) is warranted, but understanding the specified method is temporarily sufficient.
+
+The method takes as input the object of type `Topology` and the subset of coordinates detailing the soon to be feature collection.
+
+```JS
+let feature = topojson.feature(data, data.objects.counties);
+```
+
+The method then returns then feature collection, which can be used in the `geoPath()` method to obtain the SVG coordinates necessary to draw the different areas.
+
+```JS
+const path = d3
+  .geoPath();
+// SVG syntax
+console.log(path(feature));
+```
