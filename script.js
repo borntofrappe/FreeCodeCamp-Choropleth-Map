@@ -90,4 +90,19 @@ fetch(URL_SVG)
 // include a one element for each county, drawing the shape with a path element
 function drawMap(data) {
   console.log(data);
+  let topology = topojson.feature(data, data.objects.counties);
+
+
+  const path = d3
+    .geoPath();
+
+  console.log(topology);
+  // console.log(path(topology));
+  
+  svgCanvas
+    .selectAll("path")
+    .data(topology.features)
+    .enter()
+    .append("path")
+    .attr("d", path);
 }
