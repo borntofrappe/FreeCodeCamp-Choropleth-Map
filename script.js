@@ -98,10 +98,11 @@ function drawMap(data) {
   let feature = topojson.feature(data, data.objects.counties);
   // console.log(feature);
 
-  // include the path function from the library
+
   const path = d3
   .geoPath();
   
+
   // the path function accepts as argument the feature collection and returns the SVG syntax required to draw the shape 
   // console.log(path(feature));
 
@@ -112,5 +113,7 @@ function drawMap(data) {
     .data(feature.features)
     .enter()
     .append("path")
-    .attr("d", path);
+    .attr("d", path)
+    .attr("transform", `scale(0.82, 0.62)`)
+    .attr("class", "county");
 }

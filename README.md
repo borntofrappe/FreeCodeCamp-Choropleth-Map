@@ -123,3 +123,18 @@ const path = d3
 // SVG syntax
 console.log(path(feature));
 ```
+
+This does display the US map in the SVG, but the map itself exceeds the boundaries of the container.
+
+To show the map within the page, a `transform` property is included for all path elements, extending the width and height to better fit the container. It is a rough solution, and further research on maps, and projections, is warranted. 
+
+```JS
+svgCanvas
+  .selectAll("path")
+  .data(feature.features)
+  .enter()
+  .append("path")
+  .attr("d", path)
+  .attr("transform", `scale(0.82, 0.62)`)
+  .attr("class", "county");
+```

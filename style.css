@@ -40,10 +40,10 @@ body {
 }
 .container div#tooltip {
 /* 
-    absolute position the div used as tooltip
-    the left and bottom properties are set in the JS script, to move the element right next to the data point it ought to represent 
-    max-width to avoid having the text displayed in a single line
-    */
+        absolute position the div used as tooltip
+        the left and bottom properties are set in the JS script, to move the element right next to the data point it ought to represent 
+        max-width to avoid having the text displayed in a single line
+        */
   position: absolute;
   max-width: 250px;
   border-radius: 4px;
@@ -57,6 +57,13 @@ body {
   opacity: 0;
 /* transition to smoothen the change in opacity  */
   transition: opacity 0.2s ease-out;
+}
+.container svg g .county {
+  fill: rgba(37,37,37,0.7);
+  transition: all 0.25s ease-out;
+}
+.container svg g .county:hover {
+  fill: #252525;
 }
 @media (max-width: 700px) {
   .container h1#title {
