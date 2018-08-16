@@ -89,5 +89,31 @@ fetch(URL_SVG)
 
 // include a one element for each county, drawing the shape with a path element
 function drawMap(data) {
-  console.log(data);
+  // the data provided by the URL returns an obejct of type 'Topology'
+  // console.log(data);
+
+  // as d3.geoPath() works with GeoJSON, it is first necessary to convert the object into a type of understandable format
+  // topojson.feature allows to return a feature collection
+  // it accepts two arguments, the object itself and the subset to be "feature-ized"
+  let feature = topojson.feature(data, data.objects.counties);
+  // console.log(feature);
+
+
+  const path = d3
+  .geoPath();
+  
+
+  // the path function accepts as argument the feature collection and returns the SVG syntax required to draw the shape 
+  // console.log(path(feature));
+
+  // append a path element for each feature and draw a path
+  // the d attribute is dicated by the geoPath function, which gets applied to each data point
+  svgCanvas
+    .selectAll("path")
+    .data(feature.features)
+    .enter()
+    .append("path")
+    .attr("d", path)
+    .attr("transform", `scale(0.82, 0.62)`)
+    .attr("class", "county");
 }

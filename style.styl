@@ -33,38 +33,44 @@ body
     // include two shadows with a solid color, to create the effect of having another card lying below the existing one
     box-shadow 6px 8px 0 color-text, 14px 14px 0 color-background
 
-.container h1#title
-    font-size 2rem
-    text-transform capitalize
-    text-align center
-    margin 1rem
+    h1#title
+        font-size 2rem
+        text-transform capitalize
+        text-align center
+        margin 1rem
 
-.container h3#description
-    font-weight 300
-    text-transform uppercase
-    text-align center
-    letter-spacing 0.2rem
+    h3#description
+        font-weight 300
+        text-transform uppercase
+        text-align center
+        letter-spacing 0.2rem
 
-.container div#tooltip
-    /* 
-    absolute position the div used as tooltip
-    the left and bottom properties are set in the JS script, to move the element right next to the data point it ought to represent 
-    max-width to avoid having the text displayed in a single line
-    */
-    position absolute
-    max-width 250px
-    border-radius 4px
-    color var(--color-light)
-    background var(--color-dark)
-    padding 1rem 2rem
-    font-size 1.5rem
-    /* pointer-events set to none as to avoid hovering on the tooltip and preventing the hover state on the rectangle elements behind it */
-    pointer-events none
-    /* set opacity to 0 and change it to 1 on hover */
-    opacity 0
-    /* transition to smoothen the change in opacity  */
-    transition opacity 0.2s ease-out
+    div#tooltip
+        /* 
+        absolute position the div used as tooltip
+        the left and bottom properties are set in the JS script, to move the element right next to the data point it ought to represent 
+        max-width to avoid having the text displayed in a single line
+        */
+        position absolute
+        max-width 250px
+        border-radius 4px
+        color var(--color-light)
+        background var(--color-dark)
+        padding 1rem 2rem
+        font-size 1.5rem
+        /* pointer-events set to none as to avoid hovering on the tooltip and preventing the hover state on the rectangle elements behind it */
+        pointer-events none
+        /* set opacity to 0 and change it to 1 on hover */
+        opacity 0
+        /* transition to smoothen the change in opacity  */
+        transition opacity 0.2s ease-out
 
+.container svg g .county 
+    fill rgba(color-text, 0.7)
+    transition all 0.25s ease-out
+
+    &:hover
+        fill color-text
 
 // for smaller viewports reduce the font-size of the headers
 @media (max-width: 700px) 
