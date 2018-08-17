@@ -185,11 +185,11 @@ function drawMap(data) {
     .data(feature.features)
     .enter()
     .append("path")
-    // on mouseenter, display the tooltip by adding a class of active
+    // on mouseenter, display the tooltip by altering its opacity
     // include the prescribed attributes and position the element near the cursor
     .on("mouseenter", (d,i) => {
       tooltip
-        .classed("active", true)
+        .style("opacity", 1)
         .attr("data-fips", data.objects.counties.geometries[i].fips)
         .attr("data-education", data.objects.counties.geometries[i].bachelorsOrHigher)
         // position the tooltip close to the cursor, using d3.event.layerX and d3.event.layerY
@@ -205,7 +205,7 @@ function drawMap(data) {
         .text(() => `${data.objects.counties.geometries[i].bachelorsOrHigher}%`);
     })
     // on mouseout, hide the tooltip
-    .on("mouseout", () => tooltip.classed("active", false))
+    .on("mouseout", () => tooltip.style("opacity", 0))
     .attr("d", path)
     .attr("transform", `scale(0.82, 0.62)`)
     .attr("class", "county")

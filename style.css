@@ -59,9 +59,6 @@ body {
   -webkit-transition: opacity 0.2s ease-out;
   transition: opacity 0.2s ease-out;
 }
-.container div#tooltip.active {
-  opacity: 1;
-}
 .container svg g path.county {
   stroke: #252525;
   stroke-width: 0.1px;
