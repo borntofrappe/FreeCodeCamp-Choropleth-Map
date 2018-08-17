@@ -5,7 +5,8 @@
 - #eee for down-played white
 */
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -24,7 +25,8 @@ body {
   padding: 1rem;
   margin: 2rem auto;
   background: #eee;
-  box-shadow: 6px 8px 0 #252525, 14px 14px 0 #eee;
+  -webkit-box-shadow: 6px 8px 0 #252525, 14px 14px 0 #eee;
+          box-shadow: 6px 8px 0 #252525, 14px 14px 0 #eee;
 }
 .container h1#title {
   font-size: 2rem;
@@ -54,6 +56,7 @@ body {
 /* set opacity to 0 and change it to 1 on hover */
   opacity: 0;
 /* transition to smoothen the change in opacity  */
+  -webkit-transition: opacity 0.2s ease-out;
   transition: opacity 0.2s ease-out;
 }
 .container div#tooltip.active {
@@ -62,6 +65,7 @@ body {
 .container svg g path.county {
   stroke: #252525;
   stroke-width: 0.1px;
+  -webkit-transition: all 0.25s ease-out;
   transition: all 0.25s ease-out;
 }
 .container svg g path.county:hover {
