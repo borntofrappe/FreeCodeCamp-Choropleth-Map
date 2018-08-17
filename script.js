@@ -14,6 +14,7 @@ container
   .text("Bachelor's degree or higher 2010-2014");
 
 // include a div for the tooltip
+// text is included in the two paragraphs appended to the container
 const tooltip = container
   .append("div")
   .attr("id", "tooltip");
@@ -91,6 +92,10 @@ legend
   .style("font-size", "0.6rem")
   .text((d) => `${d}%`);
 
+// create a quantize scale, a scale which allows to take as input a continuous interval and returns as output one discrete value
+// the discrete value in question is attributed on the basis of the input, which is sectioned into intervals
+// five values -> five intervals in which the input is divided
+// the range in question: the colors chosen for the legend
 const colorScale = d3
   .scaleQuantize()
   .range(legendValues.color);
@@ -152,8 +157,11 @@ function mergeData(data) {
 // with the JSON format including SVG values _and_ educational data draw the counties and include matching data
 function drawMap(data) {
 
-  colorScale.domain(d3.extent(data.objects.counties.geometries, (d) => d.bachelorsOrHigher));
-  // the data provided by the URL returns an obejct of type 'Topology'
+  // with the obtained data, include the domain of the scale
+  // this is an interval ranging between 0 and 100%
+  colorScale.domain([0, d3.max(data.objects.counties.geometries, (d) => d.bachelorsOrHigher)]);
+  
+  // for the map itself, the data provided by the URL returns an obejct of type 'Topology'
   // console.log(data);
 
   // as d3.geoPath() works with GeoJSON, it is first necessary to convert the object into a type of understandable format
@@ -177,6 +185,8 @@ function drawMap(data) {
     .data(feature.features)
     .enter()
     .append("path")
+    // on mouseenter, display the tooltip by adding a class of active
+    // include the prescribed attributes and position the element near the cursor
     .on("mouseenter", (d,i) => {
       tooltip
         .classed("active", true)
@@ -186,6 +196,7 @@ function drawMap(data) {
         .style("left", `${d3.event.layerX + 5}px`)
         // as the y scale is offset by the margin value, include the margin value to have the tooltip close to the actual hovered cell
         .style("top", `${d3.event.layerY + 5}px`);
+      // include the text in the two paragraph elements
       tooltip
         .select("p.area")
         .text(() => `${data.objects.counties.geometries[i].area_name}, ${data.objects.counties.geometries[i].state}`);
@@ -193,13 +204,16 @@ function drawMap(data) {
         .select("p.education")
         .text(() => `${data.objects.counties.geometries[i].bachelorsOrHigher}%`);
     })
+    // on mouseout, hide the tooltip
     .on("mouseout", () => tooltip.classed("active", false))
     .attr("d", path)
     .attr("transform", `scale(0.82, 0.62)`)
     .attr("class", "county")
+    // include the attributes prescribed by the user stories
     .attr("data-fips", (d, i) => data.objects.counties.geometries[i].fips)
     .attr("data-state", (d, i) => data.objects.counties.geometries[i].state)
     .attr("data-area", (d, i) => data.objects.counties.geometries[i].area_name)
     .attr("data-education", (d, i) => data.objects.counties.geometries[i].bachelorsOrHigher)
+    // include a fill property dependant on the bachelorsOrHigher property and the color scale
     .attr("fill", (d, i) => colorScale(data.objects.counties.geometries[i].bachelorsOrHigher));
 }

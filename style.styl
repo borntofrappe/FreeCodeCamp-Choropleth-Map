@@ -49,15 +49,13 @@ body
         /* 
         absolute position the div used as tooltip
         the left and bottom properties are set in the JS script, to move the element right next to the data point it ought to represent 
-        max-width to avoid having the text displayed in a single line
         */
         position absolute
-        max-width 250px
         border-radius 4px
         color color-background
         background color-text
         padding 1rem 2rem
-        font-size 1.5rem
+        font-size 1.2rem
         /* pointer-events set to none as to avoid hovering on the tooltip and preventing the hover state on the rectangle elements behind it */
         pointer-events none
         /* set opacity to 0 and change it to 1 on hover */
@@ -65,10 +63,12 @@ body
         /* transition to smoothen the change in opacity  */
         transition opacity 0.2s ease-out
 
+        // include an active class toggled when the cursor hovers on the path elements
         &.active
             opacity 1
 
-.container svg g .county 
+.container svg g path.county 
+    // include a minor stroke, which is increased in width when hovering on the path element
     stroke color-text
     stroke-width 0.1px
     transition all 0.25s ease-out
@@ -76,10 +76,15 @@ body
     &:hover
         stroke-width 2px
 
-// for smaller viewports reduce the font-size of the headers
+// for smaller viewports reduce the font-size of the text elements
 @media (max-width: 700px) 
-    .container h1#title 
-        font-size 1.8rem
+    .container 
+        
+        h1#title 
+            font-size 1.8rem
 
-    .container h3#description
-        font-size 1.2rem
+        h3#description
+            font-size 1.2rem
+
+        div#tooltip
+            font-size 1rem

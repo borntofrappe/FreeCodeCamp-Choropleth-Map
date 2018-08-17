@@ -141,3 +141,32 @@ svgCanvas
 
 **Fetch URLs**
 
+The project relies on the information stored in two different JSON formats and it is therefore necessary to include both. To achieve such a feat, the following logic is implemented:
+
+- retrieve the data providing information on the counties. You can here find details on the area, state name, fip, education;
+
+- retrieve the data providing information on the counties' shapes. These are the coordinates interpreted by the `d3.geoPath` functions to include SVG syntax;
+
+- include the data of the first URL in the data of the second URL, appending the necessary values;
+
+- draw the counties with path elements and include pertinent data, with information retrieved from the merged dataset.
+
+
+
+**Color Scale**
+
+The `fill` property needs to detail the education of each county, including the colors defined in the legend. The color itself can be included with a _quantize_ scale. This is a scale with a continuous input and a discrete output. Based on the number of values included in the range, the domain is divided in equal sections and the input value is coverted in one of the options:
+
+```JS
+const colorScale = d3
+  .scaleQuantize()
+  .domain([0, 100])
+  .range(["red", "blue", "white"]);
+```
+
+The described scale divides the domain in three intervals, [0-33, 33-67, 67-100], and depending in which interval the input falls, the input is mapped to one of the colors:
+
+```JS
+colorScale(12); // "red"
+colorScale(80); // "white"
+```
