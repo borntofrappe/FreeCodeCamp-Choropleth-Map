@@ -47,8 +47,8 @@ body {
   position: absolute;
   max-width: 250px;
   border-radius: 4px;
-  color: var(--color-light);
-  background: var(--color-dark);
+  color: #eee;
+  background: #252525;
   padding: 1rem 2rem;
   font-size: 1.5rem;
 /* pointer-events set to none as to avoid hovering on the tooltip and preventing the hover state on the rectangle elements behind it */
@@ -58,12 +58,16 @@ body {
 /* transition to smoothen the change in opacity  */
   transition: opacity 0.2s ease-out;
 }
+.container div#tooltip.active {
+  opacity: 1;
+}
 .container svg g .county {
-  fill: rgba(37,37,37,0.7);
+  stroke: #252525;
+  stroke-width: 0.1px;
   transition: all 0.25s ease-out;
 }
 .container svg g .county:hover {
-  fill: #252525;
+  stroke-width: 2px;
 }
 @media (max-width: 700px) {
   .container h1#title {

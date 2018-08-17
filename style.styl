@@ -54,8 +54,8 @@ body
         position absolute
         max-width 250px
         border-radius 4px
-        color var(--color-light)
-        background var(--color-dark)
+        color color-background
+        background color-text
         padding 1rem 2rem
         font-size 1.5rem
         /* pointer-events set to none as to avoid hovering on the tooltip and preventing the hover state on the rectangle elements behind it */
@@ -65,12 +65,16 @@ body
         /* transition to smoothen the change in opacity  */
         transition opacity 0.2s ease-out
 
+        &.active
+            opacity 1
+
 .container svg g .county 
-    fill rgba(color-text, 0.7)
+    stroke color-text
+    stroke-width 0.1px
     transition all 0.25s ease-out
 
     &:hover
-        fill color-text
+        stroke-width 2px
 
 // for smaller viewports reduce the font-size of the headers
 @media (max-width: 700px) 

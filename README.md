@@ -18,21 +18,21 @@ For the project to fulfill the testing suite set up by the freeCodeCamp team, th
 
 - [x] there exist a description, with `id="description`;
 
-- [ ] the choropleth should display counties with `class="county` representing the data;
+- [x] the choropleth should display counties with `class="county` representing the data;
 
-- [ ] there should be at least 4 different fill colors;
+- [x] there should be at least 4 different fill colors;
 
-- [ ] counties should have two attributes, `data-fips` and `data-education`, relaying information regarding the corresponding data values;
+- [x] counties should have two attributes, `data-fips` and `data-education`, relaying information regarding the corresponding data values;
 
-- [ ] there exist one county for each data point;
+- [x] there exist one county for each data point;
 
 - [x] there exist a legend with `id="legend"`;
 
 - [x] in the legend, there exist at least 4 fill colors;
 
-- [ ] upon hovering on each area, a tooltip with `id="tooltip"` shows additional information;
+- [x] upon hovering on each area, a tooltip with `id="tooltip"` shows additional information;
 
-- [ ] the tooltip should have a `data-education` attribute matching the value of the active data-
+- [x] the tooltip should have a `data-education` attribute matching the value of the active data point.
 
 All this making use of the following datasets:
 
@@ -138,3 +138,6 @@ svgCanvas
   .attr("transform", `scale(0.82, 0.62)`)
   .attr("class", "county");
 ```
+
+**Fetch URLs**
+
