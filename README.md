@@ -141,21 +141,19 @@ svgCanvas
 
 **Fetch URLs**
 
-The project relies on the information stored in two different JSON formats and it is therefore necessary to include both. To achieve such a feat, the following logic is implemented:
+The project relies on the information found in two different URL and it is therefore necessary to include the JSON formats located in both. To achieve such a feat, the following logic is implemented:
 
-- retrieve the data providing information on the counties. You can here find details on the area, state name, fip, education;
+- retrieve the data providing information on the counties. You can here find details on the area, such as the name of the county, the name of the state, the fip code, the education metric. The fip code is actually crucial, as it will be noted soon enough.
 
-- retrieve the data providing information on the counties' shapes. These are the coordinates interpreted by the `d3.geoPath` functions to include SVG syntax;
+- retrieve the data providing information on the counties' shapes. Here you find the coordinates interpreted by the `d3.geoPath` function to include SVG syntax, as well as an ID property differentiating the shape. Much alike the fip code, this value is essential, as noted hereafter-
 
-- include the data of the first URL in the data of the second URL, appending the necessary values;
+- merge the two dataset, appending the necessary values in the JSON format storing the counties' coordinates. The merge is achieved thanks to the fip code and the id identifier, as these identify the same county. The merge is completed including the educational data in the coordinates' counterpart, as the receiving format is used with the `d3.geoPath` function, to actually draw the shapes.
 
-- draw the counties with path elements and include pertinent data, with information retrieved from the merged dataset.
-
-
+- draw the counties with path elements and include pertinent data, with information retrieved from the merged dataset. The coordinates, interpreted in the object of type `FeatureCollection`, are included in the `d` attribute of the path element, while the data identifying the counties is included in the data attributes demanded by the user stories, in the path and tooltip elements. Most importantly, the data describing the education metric is included with a callback function in the `fill` attribute, successfully creating the choropleth map while describing different colors.
 
 **Color Scale**
 
-The `fill` property needs to detail the education of each county, including the colors defined in the legend. The color itself can be included with a _quantize_ scale. This is a scale with a continuous input and a discrete output. Based on the number of values included in the range, the domain is divided in equal sections and the input value is coverted in one of the options:
+The `fill` property visually details the education of each county, by means of describing the colors defined in the legend. The colors themselves can be included with an if/else statement, or through a _quantize_ scale. This is a scale which differentiates itself from a linear scale in having a _discrete_ output. Based on the number of values included in the output range, the domain is divided in equal sections. Once included, the input is then mapped to one of the options:
 
 ```JS
 const colorScale = d3
@@ -164,7 +162,7 @@ const colorScale = d3
   .range(["red", "blue", "white"]);
 ```
 
-The described scale divides the domain in three intervals, [0-33, 33-67, 67-100], and depending in which interval the input falls, the input is mapped to one of the colors:
+The described scale divides the domain in three intervals, [0-33, 33-67, 67-100], and depending on the input value, the scale is able to map one of the discrete colors:
 
 ```JS
 colorScale(12); // "red"
